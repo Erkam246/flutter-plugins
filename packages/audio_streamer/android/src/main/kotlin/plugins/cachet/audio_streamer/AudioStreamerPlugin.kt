@@ -5,8 +5,6 @@ import android.content.pm.PackageManager
 import android.media.AudioFormat
 import android.media.AudioRecord
 import android.media.MediaRecorder
-import android.os.Handler
-import android.os.Looper
 import android.os.Process
 import android.util.Log
 import androidx.annotation.NonNull
