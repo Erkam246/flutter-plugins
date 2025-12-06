@@ -162,9 +162,7 @@ class AudioStreamerPlugin : FlutterPlugin, RequestPermissionsResultListener, Eve
 
             if (audioRecord.state != AudioRecord.STATE_INITIALIZED) {
                 Log.e(logTag, "Audio Record can't initialize!")
-                Handler(Looper.getMainLooper()).post {
-                    eventSink?.error("MIC_ERROR", "Audio Record can't initialize!", null)
-                }
+                eventSink?.error("MIC_ERROR", "Audio Record can't initialize!", null)
                 recording = false
                 return
             }
@@ -179,16 +177,12 @@ class AudioStreamerPlugin : FlutterPlugin, RequestPermissionsResultListener, Eve
                         val normalizedImpulse = audioBuffer[i].toDouble() / maxAmplitude.toDouble()
                         audioBufferList.add(normalizedImpulse)
                     }
-                    Handler(Looper.getMainLooper()).post {
-                        eventSink?.success(audioBufferList)
-                    }
+                    eventSink?.success(audioBufferList)
                 }
             }
         } catch (e: Exception) {
             Log.e(logTag, "Error while recording audio", e)
-            Handler(Looper.getMainLooper()).post {
-                eventSink?.error("MIC_ERROR", "Error while recording audio", e.message)
-            }
+            eventSink?.error("MIC_ERROR", "Error while recording audio", e.message)
         } finally {
             if (::audioRecord.isInitialized) {
                 if (audioRecord.recordingState == AudioRecord.RECORDSTATE_RECORDING) {
