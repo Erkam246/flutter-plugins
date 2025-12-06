@@ -5,8 +5,6 @@ import android.content.pm.PackageManager
 import android.media.AudioFormat
 import android.media.AudioRecord
 import android.media.MediaRecorder
-import android.os.Handler
-import android.os.Looper
 import android.os.Process
 import android.util.Log
 import androidx.annotation.NonNull
@@ -177,9 +175,7 @@ class AudioStreamerPlugin : FlutterPlugin, RequestPermissionsResultListener, Eve
                         val normalizedImpulse = audioBuffer[i].toDouble() / maxAmplitude.toDouble()
                         audioBufferList.add(normalizedImpulse)
                     }
-                    Handler(Looper.getMainLooper()).post {
-                        eventSink?.success(audioBufferList)
-                    }
+                    eventSink?.success(audioBufferList)
                 }
             }
         } catch (e: Exception) {
